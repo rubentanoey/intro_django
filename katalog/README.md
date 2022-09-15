@@ -26,6 +26,7 @@ Template merupakan komponen 'front-end' dari suatu aplikasi Django application. 
 Tanpa menggunakan virtual environment, Django akan **bisa tetap berjalan**. Akan tetapi, semua dependency berbeda untuk setiap projectnya perlu di-install kembali **secara global** mengakibatkan mobilitas developer melambat.
 
 ## Implementasi pada Project
+#### [1] Membuat sebuah fungsi pada views.py yang dapat melakukan pengambilan data dari model dan dikembalikan ke dalam sebuah HTML.
 1.  Membuat `CatalogItem` pada `models.py`.
 ```python
     ...
@@ -54,29 +55,20 @@ Tanpa menggunakan virtual environment, Django akan **bisa tetap berjalan**. Akan
             },
         )
 ```
+#### [2] Membuat sebuah routing untuk memetakan fungsi yang telah kamu buat pada views.py.
+1. Mengimplementasi routing pada `urls.py` di `project_django`.
+```python
+    urlpatterns = [
+        ...
+        path('katalog/', include('katalog.urls')),
+    ]
+```
+#### [3] Memetakan data yang didapatkan ke dalam HTML dengan sintaks dari Django untuk pemetaan data template.
 3. Membuat html file sebagai template di `katalog/template`
 ```python
-    {% extends 'base.html' %}
-    {% block content %}
-
-    <h1>Lab 1 Assignment PBP/PBD</h1>
-
-    <h5>Name:</h5>
-    <p>{{ name }}</p>
-
-    <h5>Student ID:</h5>
-    <p>{{ student_id }}</p>
-
+    ...
     <table>
-        <tr>
-            <th>Item Name</th>
-            <th>Item Price</th>
-            <th>Item Stock</th>
-            <th>Rating</th>
-            <th>Description</th>
-            <th>Item URL</th>
-        </tr>
-
+        ...
         {% for catalog in catalogs %}
         <tr>
             <td>{{catalog.item_name}}</td>
@@ -92,21 +84,15 @@ Tanpa menggunakan virtual environment, Django akan **bisa tetap berjalan**. Akan
 
     {% endblock content %}
 ```
-4. Mengimplementasi routing pada `urls.py` di `project_django`.
-```python
-    urlpatterns = [
-        ...
-        path('katalog/', include('katalog.urls')),
-    ]
-```
-5. Menambah direktori `'katalog'` pada `settings.py` di `project_django`.
+#### [4] Melakukan deployment ke Heroku terhadap aplikasi yang sudah kamu buat.
+1. Menambah direktori `'katalog'` pada `settings.py` di `project_django`.
 ```python
         INSTALLED_APPS = [
         ...
         'katalog',
     ]
 ```
-6. Membuat `app_name` dan `urlpatterns` agar dapat memanggil fungsi `show_catalog`.
+2. Membuat `app_name` dan `urlpatterns` agar dapat memanggil fungsi `show_catalog`.
 ```python
     from katalog.views import show_catalog
 
@@ -116,12 +102,12 @@ Tanpa menggunakan virtual environment, Django akan **bisa tetap berjalan**. Akan
         path('', show_catalog, name='show_catalog'),
     ]
 ```
-7. Melakukan `python manage.py loaddata initial_catalog_data.json` untuk meload data.
-8. Melakukan *deploy* ke `herokuapp` dengan cara:
+3. Melakukan `python manage.py loaddata initial_catalog_data.json` untuk meload data.
+4. Melakukan *deploy* ke `herokuapp` dengan cara:
     - Membuka github.com dan menuju repositori, misalnya `https://github.com/rubentanoey/mvt_django`
     - Menuju `settings > secrets > actions`
     - Klik `New repository secret`
     - untuk name `HEROKU_API_KEY`, secret API KEY dari profile herokuapp, add secret
     - untuk name `HEROKU_APP_NAME`, secret adalah nama aplikasi di herokuapp, add secret
     - Menuju `actions > workflow terakhir > Re-run all jobs`
-9. Selesai, herokuapp bisa dibuka, misalnya di [KatalogPage](https://rubentanoey-pbp2.herokuapp.com/katalog/).
+5. Selesai, herokuapp bisa dibuka, misalnya di [KatalogPage](https://rubentanoey-pbp2.herokuapp.com/katalog/).
