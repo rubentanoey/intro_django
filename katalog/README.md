@@ -54,21 +54,59 @@ Tanpa menggunakan virtual environment, Django akan **bisa tetap berjalan**. Akan
             },
         )
 ```
-3. Mengimplementasi routing pada `urls.py` di `project_django`.
+3. Membuat html file sebagai template di `katalog/template`
+```python
+    {% extends 'base.html' %}
+    {% block content %}
+
+    <h1>Lab 1 Assignment PBP/PBD</h1>
+
+    <h5>Name:</h5>
+    <p>{{ name }}</p>
+
+    <h5>Student ID:</h5>
+    <p>{{ student_id }}</p>
+
+    <table>
+        <tr>
+            <th>Item Name</th>
+            <th>Item Price</th>
+            <th>Item Stock</th>
+            <th>Rating</th>
+            <th>Description</th>
+            <th>Item URL</th>
+        </tr>
+
+        {% for catalog in catalogs %}
+        <tr>
+            <td>{{catalog.item_name}}</td>
+            <td>{{catalog.item_price}}</td>
+            <td>{{catalog.item_stock}}</td>
+            <td>{{catalog.rating}}</td>
+            <td>{{catalog.description}}</td>
+            <td>{{catalog.item_url}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    {% endblock content %}
+```
+4. Mengimplementasi routing pada `urls.py` di `project_django`.
 ```python
     urlpatterns = [
         ...
         path('katalog/', include('katalog.urls')),
     ]
 ```
-4. Menambah direktori `'katalog'` pada `settings.py` di `project_django`.
+5. Menambah direktori `'katalog'` pada `settings.py` di `project_django`.
 ```python
         INSTALLED_APPS = [
         ...
         'katalog',
     ]
 ```
-5. Membuat `app_name` dan `urlpatterns` agar dapat memanggil fungsi `show_catalog`.
+6. Membuat `app_name` dan `urlpatterns` agar dapat memanggil fungsi `show_catalog`.
 ```python
     from katalog.views import show_catalog
 
@@ -78,12 +116,12 @@ Tanpa menggunakan virtual environment, Django akan **bisa tetap berjalan**. Akan
         path('', show_catalog, name='show_catalog'),
     ]
 ```
-6. Melakukan `python manage.py loaddata initial_catalog_data.json` untuk meload data.
-7. Melakukan *deploy* ke `herokuapp` dengan cara:
+7. Melakukan `python manage.py loaddata initial_catalog_data.json` untuk meload data.
+8. Melakukan *deploy* ke `herokuapp` dengan cara:
     - Membuka github.com dan menuju repositori, misalnya `https://github.com/rubentanoey/mvt_django`
     - Menuju `settings > secrets > actions`
     - Klik `New repository secret`
     - untuk name `HEROKU_API_KEY`, secret API KEY dari profile herokuapp, add secret
     - untuk name `HEROKU_APP_NAME`, secret adalah nama aplikasi di herokuapp, add secret
     - Menuju `actions > workflow terakhir > Re-run all jobs`
-8. Selesai, herokuapp bisa dibuka, misalnya di [KatalogPage](https://rubentanoey-pbp2.herokuapp.com/katalog/).
+9. Selesai, herokuapp bisa dibuka, misalnya di [KatalogPage](https://rubentanoey-pbp2.herokuapp.com/katalog/).
