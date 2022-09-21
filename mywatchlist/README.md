@@ -177,18 +177,24 @@ Dalam pemrograman berbasis platform, `data delivery` memungkinkan perpindahan, p
     ```
 
 6. Melakukan *deploy* ke `herokuapp` dengan cara:
+    - Mengubah Procfile pada project_django menjadi
+    ```python
+    release: sh -c 'python manage.py migrate && ... && python manage.py loaddata initial_mywatchlist_data.json'
+    ...
+    ```
     - Membuka github.com dan menuju repositori, misalnya `https://github.com/rubentanoey/intro_django`
     - Menuju `settings > secrets > actions`
     - Klik `New repository secret`
     - untuk name `HEROKU_API_KEY`, secret API KEY dari profile herokuapp, add secret
     - untuk name `HEROKU_APP_NAME`, secret adalah nama aplikasi di herokuapp, add secret
-    - Menuju `actions > workflow terakhir > Re-run all jobs` </br>
+    - Menuju `actions > workflow terakhir > Re-run all jobs`
+    </br>
     Dalam kasus ini, hanya diperlukan langkah terakhir karena menggunakan repositori yang sama.
 
 ## [3] Akses ketiga link URL dengan Postman
 1. http://localhost:8000/mywatchlist/html response
-    ![html_postman](/README_src/html.png) 
+    ![html_postman](/README_src/html.PNG) 
 2. http://localhost:8000/mywatchlist/xml response
-    ![xml_postman](/README_src/xml.png) 
+    ![xml_postman](/README_src/xml.PNG) 
 3. http://localhost:8000/mywatchlist/json response
-    ![json_postman](/README_src/json.png) 
+    ![json_postman](/README_src/json.PNG) 
