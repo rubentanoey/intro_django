@@ -185,4 +185,10 @@ Dalam pemrograman berbasis platform, data delivery memungkinkan perpindahan, pen
     - Menuju `actions > workflow terakhir > Re-run all jobs`
     Dalam kasus ini, hanya diperlukan langkah terakhir karena menggunakan repositori yang sama.
 
-## [3] 
+## [3] Akses ketiga link URL dengan Postman
+1. http://localhost:8000/mywatchlist/html response
+    ![html_postman](/README_src/html.png) 
+2. http://localhost:8000/mywatchlist/xml response
+    ![xml_postman](/README_src/xml.png) 
+3. http://localhost:8000/mywatchlist/json response
+    ![json_postman](/README_src/json.png) 
