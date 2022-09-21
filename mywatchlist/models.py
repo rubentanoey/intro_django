@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class MyWatchList(models.Model):
     watched = models.BooleanField()
     title = models.CharField(max_length = 50)
-    rating = models.IntegerField(validators = [
+    rating = models.FloatField(validators = [
         MaxValueValidator(5), 
         MinValueValidator(1)]
     )

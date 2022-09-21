@@ -4,32 +4,32 @@
         "pk": 1,
         "fields": {
             "watched": 1,
-            "title": "Harry Potter: Voldemort's Victory",
-            "rating": 4.7,
-            "release_date": "2022-09-30",
-            "review": "I love the fact that Voldemort can kick Potter"
+            "title": "Harry Potter I: Voldemort's Return",
+            "rating": 4.4,
+            "release_date": "2022-09-14",
+            "review": "I love the fact that Voldemort comes back to life."
         }
     },
     {
         "model": "mywatchlist.mywatchlist",
         "pk": 2,
         "fields": {
-            "watched": 1,
-            "title": "Harry Potter: Voldemort's Victory",
-            "rating": 4.7,
-            "release_date": "2022-09-30",
-            "review": "I love the fact that Voldemort can kick Potter"
+            "watched": 0,
+            "title": "Harry Potter II: Voldemort's Victory",
+            "rating": 3.3,
+            "release_date": "2022-09-16",
+            "review": "I love the fact that Voldemort can kick Potter."
         }
     },
     {
         "model": "mywatchlist.mywatchlist",
         "pk": 3,
         "fields": {
-            "watched": 1,
-            "title": "Harry Potter: Voldemort's Victory",
-            "rating": 4.7,
-            "release_date": "2022-09-30",
-            "review": "I love the fact that Voldemort can kick Potter"
+            "watched": 0,
+            "title": "Harry Potter III: to Reveal Voldemort's Dupe",
+            "rating": 4.6,
+            "release_date": "2022-09-18",
+            "review": "I love the fact that it's not the real Voldemort."
         }
     },
     {
@@ -37,21 +37,21 @@
         "pk": 4,
         "fields": {
             "watched": 1,
-            "title": "Harry Potter: Voldemort's Victory",
-            "rating": 4.7,
-            "release_date": "2022-09-30",
-            "review": "I love the fact that Voldemort can kick Potter"
+            "title": "Harry Potter IV: Voldemort's Dupe Sacrifition",
+            "rating": 2.3,
+            "release_date": "2022-09-20",
+            "review": "I hate the fact that Voldemort's Dupe is useless."
         }
     },
     {
         "model": "mywatchlist.mywatchlist",
         "pk": 5,
         "fields": {
-            "watched": 1,
-            "title": "Harry Potter: Voldemort's Victory",
-            "rating": 4.7,
-            "release_date": "2022-09-30",
-            "review": "I love the fact that Voldemort can kick Potter"
+            "watched": 0,
+            "title": "Harry Potter V: Magic that Heals",
+            "rating": 3.5,
+            "release_date": "2022-09-22",
+            "review": "I hate the fact that it's not Potter's healing."
         }
     },
     {
@@ -59,10 +59,10 @@
         "pk": 6,
         "fields": {
             "watched": 1,
-            "title": "Harry Potter: Voldemort's Victory",
+            "title": "Harry Potter VI: Hermione's Wedding",
             "rating": 4.7,
-            "release_date": "2022-09-30",
-            "review": "I love the fact that Voldemort can kick Potter"
+            "release_date": "2022-09-24",
+            "review": "I love the fact that Hermione's crown looks beautiful."
         }
     },
     {
@@ -70,10 +70,10 @@
         "pk": 7,
         "fields": {
             "watched": 1,
-            "title": "Harry Potter: Voldemort's Victory",
-            "rating": 4.7,
-            "release_date": "2022-09-30",
-            "review": "I love the fact that Voldemort can kick Potter"
+            "title": "Harry Potter VII: Hermione's Last Wish",
+            "rating": 4.6,
+            "release_date": "2022-09-26",
+            "review": "I love the fact that her sacrifice fully supported."
         }
     },
     {
@@ -81,10 +81,10 @@
         "pk": 8,
         "fields": {
             "watched": 1,
-            "title": "Harry Potter: Voldemort's Victory",
-            "rating": 4.7,
-            "release_date": "2022-09-30",
-            "review": "I love the fact that Voldemort can kick Potter"
+            "title": "Harry Potter VIII: The Damned Place",
+            "rating": 4.5,
+            "release_date": "2022-09-28",
+            "review": "I love the fact that the place reminds me of Potter."
         }
     },
     {
@@ -92,10 +92,10 @@
         "pk": 9,
         "fields": {
             "watched": 1,
-            "title": "Harry Potter: Voldemort's Victory",
-            "rating": 4.7,
+            "title": "Harry Potter IX: Voldemort's Legacy",
+            "rating": 4.4,
             "release_date": "2022-09-30",
-            "review": "I love the fact that Voldemort can kick Potter"
+            "review": "I love the fact that the legacy is real."
         }
     },
     {
@@ -103,10 +103,10 @@
         "pk": 10,
         "fields": {
             "watched": 1,
-            "title": "Harry Potter: Voldemort's Victory",
-            "rating": 4.7,
-            "release_date": "2022-09-30",
-            "review": "I love the fact that Voldemort can kick Potter"
+            "title": "Harry Potter X: Potter's Legacy",
+            "rating": 3.3,
+            "release_date": "2022-10-02",
+            "review": "I hate the fact that the legacy is useless."
         }
     }
 ]
