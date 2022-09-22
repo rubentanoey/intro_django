@@ -1,4 +1,4 @@
-# Assignment 2: Models View Template Django
+# Assignment 3: Tests and Data Delivery
 
 #### Nama    : Ruben Tanoey
 #### NPM     : 2106752445
