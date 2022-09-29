@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="todolist-container">
+    
+    <div class="header">
+        <h2>{{user}}'s To Do</h2>
+    </div>
+
+    <div class="todolist">
+        <table class="listtable">
+            <thead>
+                <tr>
+                    <th>Finished</th>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Created</th>
+                    <th>Status</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            {% for task in todolist %}
+            <tbody>
+                <tr>
+                    <th>
+                        <input class='todolist-check' 
+                            type="checkbox" 
+                            id='{{task.id}}' 
+                            value= '{{task.ud}'
+                            name="finishbtn"
+                            {% if task.is_finished %} checked {% endif %}
+                            onchange="location.href='{% url 'todolist:mark_finished_task' task.id %}'"  
+                        />                  
+                        <!-- <span class="checkmark"></span> -->
+                    </th>
+                    <th>{{task.title}}</th>
+                    <th>{{task.description}}</th>
+                    <th>{{task.date}}</th>
+                    {% if task.is_finished == True %}
+                        <td style="text-align: center; color: green">Finished</td>
+                    {% else %}
+                        <td style="text-align: center; color: gold">In Progress</td>
+                    {% endif %}
+                    <th>
+                        <button class="btn" style="color: red;" ><a href="{% url 'todolist:delete' task.id %}">Delete</a></button>
+                    </th>
+
+                </tr>
+            </tbody>
+            
+            {% endfor %}
+        </table>
+    </div>
+
+    <p><a href="{% url 'todolist:add_task' %}">Add Task</a></p>
+    <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+</div>
+
+{% endblock content %}
