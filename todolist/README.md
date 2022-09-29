@@ -243,5 +243,7 @@ urlpatterns = [
     - Menuju `actions > workflow terakhir > Re-run all jobs`
     </br>
 
-7. 
+7. Membuat dua akun pengguna dan tiga dummy data menggunakan model Task pada akun masing-masing di situs web Heroku.
+- ![Ruben's Task](/README_src/ruben_task.jpg) 
+- ![Dadin's Task](/README_src/dadin_task.jpg) 
     
