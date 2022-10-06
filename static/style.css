@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+.table{
+  border-collapse: collapse;
+  background-color: white;
+  text-align: left;
+  overflow: hidden;
+}
+
+.th{
+  padding: 1rem 2rem;
+}
+
+.td{
+  padding: 1rem 2rem;
+}
+
+.tr{
+  padding: 1rem 2rem;
+}
+
+.createtask-container .form-container .form-apa .p{
+  min-width: 0;
+  max-width: fit-content;
+}

@@ -6,29 +6,70 @@
 
 {% block content %}  
 
-<div class = "login">
-    
-    <h1>Formulir Registrasi</h1>  
+<div class="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#F4FCFF]">
+
+    <div class = "login flex sm:w-80 lg:w-96 flex-col items-center justify-center gap-8 bg-white shadow-lg rounded-2xl p-8">
+        
+        <h1 class="lg:text-3xl sm:text-2xl text-[#04285A] font-bold">Register</h1>  
+        
+        <div>
+            <svg class="md:w-96 sm:w-80 stroke-0" width="384" height="64" viewBox="0 0 384 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="64" height="64" transform="matrix(-1 0 0 1 64 0)" fill="#F4FCFF"/>
+                <path d="M0 64L64 0V64H0Z" fill="#672A48"/>
+                <path d="M0 -8.34465e-07L64 64V-8.34465e-07H0Z" fill="#672A48"/>
+                <path d="M64 0H128V64H64V0Z" fill="#F4FCFF"/>
+                <rect x="96" width="32" height="32" fill="#CCEBDE"/>
+                <rect x="64" y="32" width="32" height="32" fill="#CCEBDE"/>
+                <rect x="72" y="40" width="16" height="16" fill="#F4FCFF"/>
+                <rect x="104" y="8" width="16" height="16" fill="#F4FCFF"/>
+                <rect width="64" height="64" transform="matrix(-1 0 0 1 192 0)" fill="#F4FCFF"/>
+                <circle r="32" transform="matrix(-1 0 0 1 160 32)" fill="#04285A"/>
+                <circle r="16" transform="matrix(-1 0 0 1 160 32)" fill="#F4FCFF"/>
+                <rect width="64" height="64" transform="matrix(-1 0 0 1 256 0)" fill="#F4FCFF"/>
+                <circle r="8" transform="matrix(-1 0 0 1 224 32)" fill="#CCEBDE"/>
+                <rect width="0.410256" height="48" transform="matrix(-1 0 0 1 224.205 8)" fill="#CCEBDE"/>
+                <rect width="0.410256" height="48" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 240.826 49.1156)" fill="#CCEBDE"/>
+                <rect x="207.174" y="49.1156" width="0.410256" height="48" transform="rotate(-135 207.174 49.1156)" fill="#CCEBDE"/>
+                <rect x="200" y="32.2051" width="0.410256" height="48" transform="rotate(-90 200 32.2051)" fill="#CCEBDE"/>
+                <rect x="256" width="64" height="64" fill="#04285A"/>
+                <mask id="mask0_568_861" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="256" y="0" width="64" height="64">
+                <rect x="256" width="64" height="64" fill="#F2FAFE"/>
+                </mask>
+                <g mask="url(#mask0_568_861)">
+                <circle cx="256" r="64" fill="#F4FCFF"/>
+                </g>
+                <circle cx="272" cy="16" r="16" fill="#672A48"/>
+                <rect x="320" width="64" height="64" fill="#04285A"/>
+                <circle cx="352" cy="32" r="32" fill="#CCEBDE"/>
+                <circle cx="352" cy="32" r="16" fill="#04285A"/>
+            </svg>                
+        </div>
 
         <form method="POST" >  
             {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
+            <div class="flex flex-col items-center justify-center gap-4 md:gap-3">
+                <div class="justify-left items-left grid-rows-1 gap-2">
+                    <table class="text-lg sm:text-base text-left"> 
+                        {{ form.as_table }} 
+                        <tr>  
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <button class="text-sm text-white items-center justify-center bg-[#04285A] py-1 px-5 rounded-md hover:shadow-md">
+                    <input class="btn login_btn text-lg" type="submit" name="submit" value="Daftar">
+                </button>
+            </div>
         </form>
-
-    {% if messages %}  
+        
+        {% if messages %}  
         <ul>   
             {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
+            <li>{{ message }}</li>  
+            {% endfor %}  
         </ul>   
-    {% endif %}
-
-</div>  
-
+        {% endif %}
+    </div>  
+</div>
+    
 {% endblock content %}

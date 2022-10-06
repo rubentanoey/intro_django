@@ -1,23 +1,74 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="new container">
-    <div class="header">
-        <h3>Task Form</h3>
-    </div>
+<div class = "flex min-h-screen flex-col items-center justify-center gap-4 bg-[#F4FCFF]">
+    <div class="header flex w-72 sm:w-80 lg:w-[640px] flex-col items-center justify-center gap-8 bg-white shadow-lg rounded-2xl p-8">
+        <h1 class="lg:text-3xl sm:text-2xl text-[#04285A] font-bold">Task Creation</h1>
+        <div>
+            <svg width="640" height="80" viewBox="0 0 640 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="80" height="80" transform="matrix(1 0 0 -1 0 80)" fill="#F4FCFF"/>
+                <circle r="40" transform="matrix(1 0 0 -1 40 40)" fill="#CCEBDE"/>
+                <rect width="40" height="40" transform="matrix(1 0 0 -1 40 80)" fill="#F4FCFF"/>
+                <circle r="20" transform="matrix(1 0 0 -1 40.1631 40)" fill="#F4FCFF"/>
+                <rect width="80" height="80" transform="matrix(-1 0 0 1 160 0)" fill="#F4FCFF"/>
+                <path d="M80 80L160 0V80H80Z" fill="#672A48"/>
+                <path d="M80 -4.52995e-06L160 80V-4.52995e-06H80Z" fill="#672A48"/>
+                <rect width="80" height="80" transform="matrix(-1 0 0 1 240 0)" fill="#F4FCFF"/>
+                <circle r="20" transform="matrix(-1 0 0 1 220 20)" fill="#04285A"/>
+                <circle r="20" transform="matrix(-1 0 0 1 180 20)" fill="#672A48"/>
+                <circle r="20" transform="matrix(-1 0 0 1 180 60)" fill="#04285A"/>
+                <circle r="20" transform="matrix(-1 0 0 1 220 60)" fill="#672A48"/>
+                <rect width="80" height="80" transform="matrix(-1 0 0 1 320 0)" fill="#F4FCFF"/>
+                <circle r="40" transform="matrix(-1 0 0 1 280 40)" fill="#04285A"/>
+                <circle r="20" transform="matrix(-1 0 0 1 280 40)" fill="#F4FCFF"/>
+                <rect width="80" height="80" transform="matrix(0 -1 -1 0 400 80)" fill="#F4FCFF"/>
+                <rect width="40" height="80" transform="matrix(0 -1 -1 0 400 40)" fill="#F4FCFF"/>
+                <mask id="mask0_568_777" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="320" y="0" width="80" height="80">
+                <rect width="80" height="80" transform="matrix(0 -1 -1 0 400 80)" fill="#F2FAFE"/>
+                </mask>
+                <g mask="url(#mask0_568_777)">
+                <circle r="40" transform="matrix(0 -1 -1 0 400 7.62939e-06)" fill="#CCEBDE"/>
+                <circle r="40" transform="matrix(0 -1 -1 0 320 7.62939e-06)" fill="#CCEBDE"/>
+                <circle r="40" transform="matrix(0 -1 -1 0 400 80)" fill="#CCEBDE"/>
+                </g>
+                <rect width="80" height="80" transform="matrix(-1 0 0 1 480 0)" fill="#F4FCFF"/>
+                <circle r="10" transform="matrix(-1 0 0 1 440 40)" fill="#CCEBDE"/>
+                <rect width="0.512821" height="60" transform="matrix(-1 0 0 1 440.256 10)" fill="#CCEBDE"/>
+                <rect width="0.512821" height="60" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 461.032 61.3945)" fill="#CCEBDE"/>
+                <rect x="418.968" y="61.3945" width="0.512821" height="60" transform="rotate(-135 418.968 61.3945)" fill="#CCEBDE"/>
+                <rect x="410" y="40.2563" width="0.512821" height="60" transform="rotate(-90 410 40.2563)" fill="#CCEBDE"/>
+                <rect x="480" width="80" height="80" fill="#04285A"/>
+                <mask id="mask1_568_777" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="480" y="0" width="80" height="80">
+                <rect x="480" width="80" height="80" fill="#F2FAFE"/>
+                </mask>
+                <g mask="url(#mask1_568_777)">
+                <circle cx="480" r="80" fill="#F4FCFF"/>
+                </g>
+                <circle cx="500" cy="20" r="20" fill="#672A48"/>
+                <rect x="560" width="80" height="80" fill="#04285A"/>
+                <circle cx="600" cy="40" r="40" fill="#CCEBDE"/>
+                <circle cx="600" cy="40" r="20" fill="#04285A"/>
+            </svg>                    
+        </div>
         <form method="POST" action="" id="newForm">
             {% csrf_token %}
-            <table>
-                {{form.as_table}}
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Create Task"/></td>
-                </tr>  
-                <tr>
-                    <td></td>
-                    <td><input type="button" value="Go back!" onclick="history.back()"></td>
-                </tr>
-            </table>
+            <div class="flex flex-col gap-4 justify-center">
+
+                <div class="justify-left items-left grid-rows-1 gap-2">
+                    <table class="text-lg sm:text-base text-left">
+                        {{form.as_table}}
+                    </table>
+                </div>
+                <div class="flex gap-2 justify-center items-center">
+                    <div class="">
+                        <button class="text-lg text-white items-center justify-center bg-[#672A48] py-1 px-5 rounded-md hover:shadow-lg"><input type="button" value="Back" onclick="history.back()"></button>
+                    </div>
+                    <div class="">
+                        <button class="text-lg text-white items-center justify-center bg-[#04285A] py-1 px-5 rounded-md hover:shadow-lg"><input type="submit" name="submit" value="Create Task"/></button>
+                    </div>
+                </div>
+            </div>
         </form>
+    </div>
 </div>
 {% endblock content %}
