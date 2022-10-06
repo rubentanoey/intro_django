@@ -16,7 +16,7 @@
         <div class="todolist">
             <div class="listtable flex flex-row gap-2 flex-wrap">
                     {% for task in todolist %}
-                    <div class=" justify-center items-center flex flex-col gap-2 p-6 sm:w-[620x] lg:w-[248px] bg-[#F4FCFF] rounded-lg text-[#04285A] overflow-hidden shadow-md hover:shadow-2xl hover:shadow-">
+                    <div class=" justify-center items-center flex flex-col gap-2 p-6 lg:w-[248px] bg-[#F4FCFF] rounded-lg text-[#04285A] overflow-hidden shadow-md hover:shadow-2xl hover:shadow-">
                             <input class='todolist-check colo'
                                 type="checkbox" 
                                 id='{{task.id}}' 
@@ -25,7 +25,7 @@
                                 {% if task.is_finished %} checked {% endif %}
                                 onchange="location.href='{% url 'todolist:mark_finished_task' task.id %}'"  
                                 />
-                        <div>
+                        <div class="py-3">
                             <svg width="248" height="42" viewBox="0 0 248 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="41.3333" height="41.3333" transform="matrix(1 0 0 -1 0 41.3334)" fill="#F4FCFF"/>
                             <circle r="20.6667" transform="matrix(1 0 0 -1 20.6667 20.6667)" fill="#CCEBDE"/>
@@ -59,18 +59,26 @@
                             <rect x="216.467" y="31.7205" width="0.264957" height="31" transform="rotate(-135 216.467 31.7205)" fill="#CCEBDE"/>
                             <rect x="211.833" y="20.7991" width="0.264957" height="31" transform="rotate(-90 211.833 20.7991)" fill="#CCEBDE"/>
                             </svg>
-                        </div>                            
-                        <div class="lg:text-lg sm:text-md text-[#04285A] font-semibold">{{task.title}}</div>
-                        <div>{{task.description}}</div>
-                        <div>Created at:</div>
-                        <div>{{task.date}}</div>
+                        </div>
+                        <div class="flex flex-col">                            
+                            <div class="lg:text-lg sm:text-md text-[#04285A] font-semibold">{{task.title}}</div>
+                            <div>{{task.description}}</div>
+                        </div>
                         {% if task.is_finished == True %}
-                            <div class="text-center bg-[]">Finished</div>
+                        <div class="text-center bg-[#35D458] text-[#036719] py-1 px-4 rounded-full">Finished</div>
                         {% else %}
-                            <div class="text-center">In Progress</div>
+                        <div class="text-center bg-[#F8E006] text-[#978908] py-1 px-4 rounded-full">In Progress</div>
                         {% endif %}
                         <div>
-                            <button class="btn" style="color: red;" ><a href="{% url 'todolist:delete' task.id %}">Delete</a></button>
+                            <div>Created at:</div>
+                            <div>{{task.date}}</div>
+                        </div>
+                        <div>
+                            <button class="btn flex bg-[]"" ><a href="{% url 'todolist:delete' task.id %}">
+                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 7.3877L18.1327 19.5302C18.0579 20.5768 17.187 21.3877 16.1378 21.3877H7.86224C6.81296 21.3877 5.94208 20.5768 5.86732 19.5302L5 7.3877M10 11.3877V17.3877M14 11.3877V17.3877M15 7.3877V4.3877C15 3.83541 14.5523 3.3877 14 3.3877H10C9.44772 3.3877 9 3.83541 9 4.3877V7.3877M4 7.3877H20" stroke="#F93D48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>                                                                     
+                            </a></button>
                         </div>
                     </div>                
                 {% endfor %}
