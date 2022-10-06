@@ -28,7 +28,7 @@ ___
     - `<h1>` mendefinisikan judul dengan priority 1 (ukuran besar)
     - etc.
 
-## [3]  Jelaskan CSS Selector yang kamu ketahui
+## [3] Jelaskan CSS Selector yang kamu ketahui
 - **Element Selector** : Melakukan seleksi berdasarkan pada nama elemen dengan menuliskan tag elemennya
     Misal untuk elemen `<p>`, akan didefinisikan style-nya dengan:
     ```css
@@ -58,3 +58,41 @@ ___
     }
 
     ```
+
+## [4] Jelaskan langkah implementasi
+1. Menghubungkan html dengan Tailwind CSS dengan menjalankan src berikut pada `base.html`.
+    ```html
+        {% load static %}
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ruben Tanoey PBP</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        {% block meta %} 
+        {% endblock meta %}
+        </head>
+        <body>
+        {% block content %} 
+        {% endblock content %}
+        <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+        </body>
+        </html>
+    ```
+2. Mengubah style dari setiap file.html
+- Pada `login.html`, `register.html` dan `add-task.html`
+    - Menggunakan container `<div>` yang membuat page sebesar media untuk memberi dasar warna web dengan modifier `bg-[#]`.
+    - Agar dapat responsif, menggunakan modifier `flex`.
+    - Menggunakan container `<div>` yang membuat kotak yang memungkinkan untuk diisi elemen lain seperti `<button>`, `<div>`, `<input>`, etc.
+    - Melakukan media query yang dapat didefinsikan dari dokumentasi tailwind, yaitu dengan `sm:`, `md:`, dan `lg`.
+    - Melakukan styling lainnya seperti `text-color`, `text-size`.
+- Pada `todolist.html`
+    - Melakukan seperti pada `.html` lainnya.
+    - Pada elemen card, digunakan modifier `hover:` agar dapat dilakukan hover pada setiap cards.
+    - Agar cards dalam container dapat responsif turun ke bawah, maka dibutuhkan modifier `flex flex-warp`
+    - Melakukan styling lainnya
+- Melakukan deployment di HerokuApp.
