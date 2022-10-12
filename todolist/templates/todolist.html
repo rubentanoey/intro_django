@@ -1,7 +1,215 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<script>
+    $(document).ready(() => {
+        const card = task => `      
+            <div class=" justify-center items-center flex flex-col gap-2 p-6 lg:w-[248px] bg-[#F4FCFF] rounded-lg text-[#04285A] overflow-hidden shadow-md hover:shadow-2xl hover:shadow-">
+                <input class='todolist-check col'
+                    type="checkbox" 
+                    id='${task.pk}' 
+                    value= '{{task.ud}}'
+                    name="finishbtn"
+                    ${task.fields.is_finished && "checked"}
+                    onclick="location.href='mark-as-finished/${task.pk}'"  
+                    />
+                <div class="py-3">
+                    <svg width="248" height="42" viewBox="0 0 248 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="41.3333" height="41.3333" transform="matrix(1 0 0 -1 0 41.3334)" fill="#F4FCFF"/>
+                    <circle r="20.6667" transform="matrix(1 0 0 -1 20.6667 20.6667)" fill="#CCEBDE"/>
+                    <rect width="20.6667" height="20.6667" transform="matrix(1 0 0 -1 20.6666 41.3334)" fill="#F4FCFF"/>
+                    <circle r="10.3333" transform="matrix(1 0 0 -1 20.7509 20.6667)" fill="#F4FCFF"/>
+                    <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 82.6666 0)" fill="#F4FCFF"/>
+                    <path d="M41.3334 41.3333L82.6667 0V41.3333H41.3334Z" fill="#672A48"/>
+                    <path d="M41.3334 4.31538e-05L82.6667 41.3334V4.31538e-05H41.3334Z" fill="#672A48"/>
+                    <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 124 0)" fill="#F4FCFF"/>
+                    <circle r="10.3333" transform="matrix(-1 0 0 1 113.667 10.3333)" fill="#04285A"/>
+                    <circle r="10.3333" transform="matrix(-1 0 0 1 93 10.3333)" fill="#672A48"/>
+                    <circle r="10.3333" transform="matrix(-1 0 0 1 93 31)" fill="#04285A"/>
+                    <circle r="10.3333" transform="matrix(-1 0 0 1 113.667 31)" fill="#672A48"/>
+                    <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 165.333 0)" fill="#F4FCFF"/>
+                    <circle r="20.6667" transform="matrix(-1 0 0 1 144.667 20.6667)" fill="#04285A"/>
+                    <circle r="10.3333" transform="matrix(-1 0 0 1 144.667 20.6667)" fill="#F4FCFF"/>
+                    <rect width="41.3333" height="41.3333" transform="matrix(0 -1 -1 0 206.667 41.3334)" fill="#F4FCFF"/>
+                    <rect width="20.6667" height="41.3333" transform="matrix(0 -1 -1 0 206.667 20.6666)" fill="#F4FCFF"/>
+                    <mask id="mask0_579_678" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="165" y="0" width="42" height="42">
+                    <rect width="41.3333" height="41.3333" transform="matrix(0 -1 -1 0 206.667 41.3334)" fill="#F2FAFE"/>
+                    </mask>
+                    <g mask="url(#mask0_579_678)">
+                    <circle r="20.6667" transform="matrix(0 -1 -1 0 206.667 -3.62396e-05)" fill="#CCEBDE"/>
+                    <circle r="20.6667" transform="matrix(0 -1 -1 0 165.333 -3.62396e-05)" fill="#CCEBDE"/>
+                    <circle r="20.6667" transform="matrix(0 -1 -1 0 206.667 41.3333)" fill="#CCEBDE"/>
+                    </g>
+                    <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 248 0)" fill="#F4FCFF"/>
+                    <circle r="5.16667" transform="matrix(-1 0 0 1 227.333 20.6667)" fill="#CCEBDE"/>
+                    <rect width="0.264957" height="31" transform="matrix(-1 0 0 1 227.466 5.16663)" fill="#CCEBDE"/>
+                    <rect width="0.264957" height="31" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 238.2 31.7205)" fill="#CCEBDE"/>
+                    <rect x="216.467" y="31.7205" width="0.264957" height="31" transform="rotate(-135 216.467 31.7205)" fill="#CCEBDE"/>
+                    <rect x="211.833" y="20.7991" width="0.264957" height="31" transform="rotate(-90 211.833 20.7991)" fill="#CCEBDE"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col w-full p-2 bg-white rounded-md border-gray-200 border-2">                            
+                    <div class="lg:text-lg sm:text-md text-[#04285A] font-semibold">${task.fields.title}</div>
+                    <div>${task.fields.description}</div>
+                </div>
+                ${task.fields.is_finished ? `<div class="text-center bg-[#35D458] text-[#036719] py-1 px-4 rounded-full">Finished</div>` : `<div class="text-center bg-[#F8E006] text-[#978908] py-1 px-4 rounded-full">In Progress</div>`}
+                <div>
+                    <div>Created at:</div>
+                    <div>${task.fields.date}</div>
+                </div>
+                <div>
+                    <button class="btn flex bg-[]"" ><a href="delete/${task.pk}">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 7.3877L18.1327 19.5302C18.0579 20.5768 17.187 21.3877 16.1378 21.3877H7.86224C6.81296 21.3877 5.94208 20.5768 5.86732 19.5302L5 7.3877M10 11.3877V17.3877M14 11.3877V17.3877M15 7.3877V4.3877C15 3.83541 14.5523 3.3877 14 3.3877H10C9.44772 3.3877 9 3.83541 9 4.3877V7.3877M4 7.3877H20" stroke="#F93D48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                                                                     
+                    </a></button>
+                </div>
+            </div>
+        `;
+    
+        const conquerTask = () => {
+            $.get("{% url 'todolist:get_todolist_json' %}", data => {
+
+                $.each(data, (i, value) => {
+                    $("#allTodolist").append(card(value));
+                });
+            });
+        };
+
+        const openModal = e => {
+            e.preventDefault(); // prevent refresh
+            // console.log('test')
+            $("#createTaskModal").removeClass("hidden");
+        };
+
+        const closeModal = e => {
+            $("#createTaskModal").addClass("hidden");
+        };
+
+        $("#newForm").submit(e => {
+            e.preventDefault();
+
+            // get the CSRF Token
+            const csrftoken = document.querySelector(
+                "[name=csrfmiddlewaretoken]"
+            ).value;
+
+            const title = $("#title").val();
+            const description = $("#description").val();
+
+            if (title && description) {
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'todolist:add' %}",
+                    headers: { "X-CSRFToken": csrftoken }, // give CSRF token to the header
+                    mode: "same-origin", // Do not send CSRF token to another domain.
+                    data: {
+                        title: title,
+                        description: description,
+                    },
+                    success: response => {
+                        $("#newForm").trigger("reset");
+                    closeModal();
+                        $("#allTodolist").append(card(response));
+                    },
+                    error: error => {
+                    console.log(error);
+                    },
+                });
+                } else {
+                    alert("Fill all fields!");
+                }
+            });
+
+        $("#openingModal").click(openModal);
+        $("#closingModal").click(closeModal);
+        conquerTask();
+    });
+
+</script>
+
+<!-- INI MODAL -->
+<div id="createTaskModal" class="w-full flex fixed justify-center z-10 min-h-screen items-center bg-[#04285A] bg-opacity-50 hidden" >
+    <div class="header flex w-72 sm:w-80 lg:w-[640px] flex-col items-center justify-center gap-8 bg-white shadow-lg rounded-2xl p-8">
+        <h1 class="lg:text-3xl sm:text-2xl text-[#04285A] font-bold">Add {{user}}'s task!</h1>
+        <div class="py-3">
+            <svg width="248" height="42" viewBox="0 0 248 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="41.3333" height="41.3333" transform="matrix(1 0 0 -1 0 41.3334)" fill="#F4FCFF"/>
+            <circle r="20.6667" transform="matrix(1 0 0 -1 20.6667 20.6667)" fill="#CCEBDE"/>
+            <rect width="20.6667" height="20.6667" transform="matrix(1 0 0 -1 20.6666 41.3334)" fill="#F4FCFF"/>
+            <circle r="10.3333" transform="matrix(1 0 0 -1 20.7509 20.6667)" fill="#F4FCFF"/>
+            <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 82.6666 0)" fill="#F4FCFF"/>
+            <path d="M41.3334 41.3333L82.6667 0V41.3333H41.3334Z" fill="#672A48"/>
+            <path d="M41.3334 4.31538e-05L82.6667 41.3334V4.31538e-05H41.3334Z" fill="#672A48"/>
+            <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 124 0)" fill="#F4FCFF"/>
+            <circle r="10.3333" transform="matrix(-1 0 0 1 113.667 10.3333)" fill="#04285A"/>
+            <circle r="10.3333" transform="matrix(-1 0 0 1 93 10.3333)" fill="#672A48"/>
+            <circle r="10.3333" transform="matrix(-1 0 0 1 93 31)" fill="#04285A"/>
+            <circle r="10.3333" transform="matrix(-1 0 0 1 113.667 31)" fill="#672A48"/>
+            <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 165.333 0)" fill="#F4FCFF"/>
+            <circle r="20.6667" transform="matrix(-1 0 0 1 144.667 20.6667)" fill="#04285A"/>
+            <circle r="10.3333" transform="matrix(-1 0 0 1 144.667 20.6667)" fill="#F4FCFF"/>
+            <rect width="41.3333" height="41.3333" transform="matrix(0 -1 -1 0 206.667 41.3334)" fill="#F4FCFF"/>
+            <rect width="20.6667" height="41.3333" transform="matrix(0 -1 -1 0 206.667 20.6666)" fill="#F4FCFF"/>
+            <mask id="mask0_579_678" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="165" y="0" width="42" height="42">
+            <rect width="41.3333" height="41.3333" transform="matrix(0 -1 -1 0 206.667 41.3334)" fill="#F2FAFE"/>
+            </mask>
+            <g mask="url(#mask0_579_678)">
+            <circle r="20.6667" transform="matrix(0 -1 -1 0 206.667 -3.62396e-05)" fill="#CCEBDE"/>
+            <circle r="20.6667" transform="matrix(0 -1 -1 0 165.333 -3.62396e-05)" fill="#CCEBDE"/>
+            <circle r="20.6667" transform="matrix(0 -1 -1 0 206.667 41.3333)" fill="#CCEBDE"/>
+            </g>
+            <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 248 0)" fill="#F4FCFF"/>
+            <circle r="5.16667" transform="matrix(-1 0 0 1 227.333 20.6667)" fill="#CCEBDE"/>
+            <rect width="0.264957" height="31" transform="matrix(-1 0 0 1 227.466 5.16663)" fill="#CCEBDE"/>
+            <rect width="0.264957" height="31" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 238.2 31.7205)" fill="#CCEBDE"/>
+            <rect x="216.467" y="31.7205" width="0.264957" height="31" transform="rotate(-135 216.467 31.7205)" fill="#CCEBDE"/>
+            <rect x="211.833" y="20.7991" width="0.264957" height="31" transform="rotate(-90 211.833 20.7991)" fill="#CCEBDE"/>
+            </svg>
+        </div>
+        <form method="POST" id="newForm">
+            {% csrf_token %}
+            <div class="flex flex-col gap-7 justify-center items-center">
+                <div class="flex flex-col gap-3">
+                    <div class="flex flex-col gap-1">
+                        <label for="title">Title:</label>
+                        <input
+                        type="text"
+                        name="title"
+                        id="title"
+                        placeholder="Platform-Based Prog."
+                        class="form-control py-1 px-5 bg-[#F4FCFF] border-2 border-gray-200 rounded-lg"
+                        required
+                        />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label for="password">Description:</label>
+                        <input
+                        type="text"
+                        name="description"
+                        id="description"
+                        placeholder="Group assignment, etc."
+                        class="form-control py-1 px-5 bg-[#F4FCFF] border-2 border-gray-200 rounded-lg"
+                        required
+                        />
+                    </div>
+                </div>
+                <div class="flex gap-2 justify-center items-center">
+                    <div class="">
+                        <button class="text-lg text-white items-center justify-center bg-[#672A48] py-1 px-5 rounded-md hover:shadow-lg"><input type="button" value="Back" onclick="history.back()"></button>
+                    </div>
+                    <div class="">
+                        <button class="text-lg text-white items-center justify-center bg-[#04285A] py-1 px-5 rounded-md hover:shadow-lg"><input type="submit" name="submit" value="Create Task"/></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- INI MAIN -->
 <div class="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#F4FCFF]">
-    <div class="todolist-container flex flex-col w-300 lg:w-[1040px] items-center justify-center gap-8 bg-white shadow-lg rounded-2xl p-8">
+    <div class="todolist-container flex flex-col w-300 lg:w-[1140px] items-center justify-center gap-8 bg-white shadow-lg rounded-2xl p-8">
         
         <div class="header flex flex-col justify-center items-center">
             <h1 class="lg:text-3xl sm:text-2xl text-[#04285A] font-bold">Hi, {{user}}.</h1>
@@ -9,82 +217,14 @@
         </div>
 
         <div class="flex flex-row gap-2 justify-center items-center">
-            <button class="text-lg text-white items-center justify-center bg-[#04285A] py-1 px-5 rounded-md hover:shadow-lg hover:shadow-[#F4FCFF]"><a href="{% url 'todolist:add_task' %}">Add Task</a></button>
-            <button class="text-lg text-white items-center justify-center bg-[#672A48] py-1 px-5 rounded-md hover:shadow-lg hover:shadow-[#F4FCFF"><a href="{% url 'todolist:logout' %}">Logout</a></button>
+            <button class="text-lg text-white items-center justify-center bg-[#04285A] py-1 px-5 rounded-md hover:shadow-lg hover:shadow-[#F4FCFF]" id="openingModal">Add Task</button>
+            <button class="text-lg text-white items-center justify-center bg-[#672A48] py-1 px-5 rounded-md hover:shadow-lg hover:shadow-[#F4FCFF]"><a href="{% url 'todolist:logout' %}">Logout</a></button>
         </div>
         
         <div class="todolist">
-            <div class="listtable flex flex-row gap-2 flex-wrap">
-                    {% for task in todolist %}
-                    <div class=" justify-center items-center flex flex-col gap-2 p-6 lg:w-[248px] bg-[#F4FCFF] rounded-lg text-[#04285A] overflow-hidden shadow-md hover:shadow-2xl hover:shadow-">
-                            <input class='todolist-check colo'
-                                type="checkbox" 
-                                id='{{task.id}}' 
-                                value= '{{task.ud}'
-                                name="finishbtn"
-                                {% if task.is_finished %} checked {% endif %}
-                                onchange="location.href='{% url 'todolist:mark_finished_task' task.id %}'"  
-                                />
-                        <div class="py-3">
-                            <svg width="248" height="42" viewBox="0 0 248 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="41.3333" height="41.3333" transform="matrix(1 0 0 -1 0 41.3334)" fill="#F4FCFF"/>
-                            <circle r="20.6667" transform="matrix(1 0 0 -1 20.6667 20.6667)" fill="#CCEBDE"/>
-                            <rect width="20.6667" height="20.6667" transform="matrix(1 0 0 -1 20.6666 41.3334)" fill="#F4FCFF"/>
-                            <circle r="10.3333" transform="matrix(1 0 0 -1 20.7509 20.6667)" fill="#F4FCFF"/>
-                            <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 82.6666 0)" fill="#F4FCFF"/>
-                            <path d="M41.3334 41.3333L82.6667 0V41.3333H41.3334Z" fill="#672A48"/>
-                            <path d="M41.3334 4.31538e-05L82.6667 41.3334V4.31538e-05H41.3334Z" fill="#672A48"/>
-                            <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 124 0)" fill="#F4FCFF"/>
-                            <circle r="10.3333" transform="matrix(-1 0 0 1 113.667 10.3333)" fill="#04285A"/>
-                            <circle r="10.3333" transform="matrix(-1 0 0 1 93 10.3333)" fill="#672A48"/>
-                            <circle r="10.3333" transform="matrix(-1 0 0 1 93 31)" fill="#04285A"/>
-                            <circle r="10.3333" transform="matrix(-1 0 0 1 113.667 31)" fill="#672A48"/>
-                            <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 165.333 0)" fill="#F4FCFF"/>
-                            <circle r="20.6667" transform="matrix(-1 0 0 1 144.667 20.6667)" fill="#04285A"/>
-                            <circle r="10.3333" transform="matrix(-1 0 0 1 144.667 20.6667)" fill="#F4FCFF"/>
-                            <rect width="41.3333" height="41.3333" transform="matrix(0 -1 -1 0 206.667 41.3334)" fill="#F4FCFF"/>
-                            <rect width="20.6667" height="41.3333" transform="matrix(0 -1 -1 0 206.667 20.6666)" fill="#F4FCFF"/>
-                            <mask id="mask0_579_678" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="165" y="0" width="42" height="42">
-                            <rect width="41.3333" height="41.3333" transform="matrix(0 -1 -1 0 206.667 41.3334)" fill="#F2FAFE"/>
-                            </mask>
-                            <g mask="url(#mask0_579_678)">
-                            <circle r="20.6667" transform="matrix(0 -1 -1 0 206.667 -3.62396e-05)" fill="#CCEBDE"/>
-                            <circle r="20.6667" transform="matrix(0 -1 -1 0 165.333 -3.62396e-05)" fill="#CCEBDE"/>
-                            <circle r="20.6667" transform="matrix(0 -1 -1 0 206.667 41.3333)" fill="#CCEBDE"/>
-                            </g>
-                            <rect width="41.3333" height="41.3333" transform="matrix(-1 0 0 1 248 0)" fill="#F4FCFF"/>
-                            <circle r="5.16667" transform="matrix(-1 0 0 1 227.333 20.6667)" fill="#CCEBDE"/>
-                            <rect width="0.264957" height="31" transform="matrix(-1 0 0 1 227.466 5.16663)" fill="#CCEBDE"/>
-                            <rect width="0.264957" height="31" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 238.2 31.7205)" fill="#CCEBDE"/>
-                            <rect x="216.467" y="31.7205" width="0.264957" height="31" transform="rotate(-135 216.467 31.7205)" fill="#CCEBDE"/>
-                            <rect x="211.833" y="20.7991" width="0.264957" height="31" transform="rotate(-90 211.833 20.7991)" fill="#CCEBDE"/>
-                            </svg>
-                        </div>
-                        <div class="flex flex-col">                            
-                            <div class="lg:text-lg sm:text-md text-[#04285A] font-semibold">{{task.title}}</div>
-                            <div>{{task.description}}</div>
-                        </div>
-                        {% if task.is_finished == True %}
-                        <div class="text-center bg-[#35D458] text-[#036719] py-1 px-4 rounded-full">Finished</div>
-                        {% else %}
-                        <div class="text-center bg-[#F8E006] text-[#978908] py-1 px-4 rounded-full">In Progress</div>
-                        {% endif %}
-                        <div>
-                            <div>Created at:</div>
-                            <div>{{task.date}}</div>
-                        </div>
-                        <div>
-                            <button class="btn flex bg-[]"" ><a href="{% url 'todolist:delete' task.id %}">
-                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 7.3877L18.1327 19.5302C18.0579 20.5768 17.187 21.3877 16.1378 21.3877H7.86224C6.81296 21.3877 5.94208 20.5768 5.86732 19.5302L5 7.3877M10 11.3877V17.3877M14 11.3877V17.3877M15 7.3877V4.3877C15 3.83541 14.5523 3.3877 14 3.3877H10C9.44772 3.3877 9 3.83541 9 4.3877V7.3877M4 7.3877H20" stroke="#F93D48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>                                                                     
-                            </a></button>
-                        </div>
-                    </div>                
-                {% endfor %}
+            <div class="listtable flex flex-row gap-2 flex-wrap justify-center items-center" id="allTodolist">
             </div>
         </div>
-
     </div>
 </div>
 
